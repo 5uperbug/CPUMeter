@@ -10,15 +10,11 @@ setInterval(function() {
 
 function printHeader() {
     var lines = '';
-    var str = 'CPU';
+    var str = 'CPU     ';
     for (var i = 0; i < os.cpus().length; i++) {
-        str += '\tCPU' + ' ' + i;
+        str += 'CPU' + ' ' + i + '   ';
     };
-    for (var i = 0; i < str.length; i++) {
-        if (str[i] === '\t') {
-            lines += '---';
-            continue;
-        }
+    for (var i = 0; i < str.trim().length; i++) {
         lines += '-';
     };
     console.log(str + '\n' + lines);
