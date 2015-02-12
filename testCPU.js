@@ -1,13 +1,17 @@
+'use strict';
 var os = require('os');
 var oldUsage = [];
 var oldTotals = [];
 
+
 printHeader();
 
+//Call Meter every second
 setInterval(function() {
     getCPU();
 }, 1000);
 
+//Print the Table Headers for each coloumn and a horizantal line
 function printHeader() {
     var lines = '';
     var str = 'CPU     ';
@@ -20,6 +24,7 @@ function printHeader() {
     console.log(str + '\n' + lines);
 }
 
+//Get CPU utilization
 function getCPU(cpu_n) {
     var timers = [],
         totals = [],
@@ -42,8 +47,9 @@ function getCPU(cpu_n) {
 
         if (oldUsage[i] && oldTotals[i]) {
             sum += usgDiff[i] * 100 / totDiff[i];
-            tempStr += '\t' + (usgDiff[i] * 100 / totDiff[i]).toFixed(2);
+            tempStr += '    ' + (usgDiff[i] * 100 / totDiff[i]).toFixed(2);
         }
+
         oldUsage[i] = usage[i];
         oldTotals[i] = totals[i];
     }
@@ -54,6 +60,7 @@ function getCPU(cpu_n) {
     process.stdout.write(avg + tempStr);
 }
 
+//Caputure keyboars interupt to add a newline to the end
 process.on('SIGINT', function() {
     console.log();
     process.exit();
