@@ -73,9 +73,9 @@ function getCPU(cpu_n) {
 
 function pad(n) {
     if(n < 10)
-        n = '00' + n.toString();
+        n = '  ' + n.toString();
     else if(n > 10 && n < 100)
-        n = '0' + n.toString();
+        n = ' ' + n.toString();
     return n;
 };
 
